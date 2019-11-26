@@ -1,0 +1,27 @@
+name: Elixir CI
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    container:
+      image: elixir:1.9.4
+    env:
+      MIX_ENV: test
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache Elixir deps
+        uses: actions/cache@v1
+        with:
+          path: deps
+          key: ${{ runner.OS }}-build-${{hashFiles('mix.lock') }}
+      - name: Install Dependencies
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get
+      - name: Run Tests
+        run: mix test

@@ -1,18 +1,8 @@
 defmodule KafkaHelper do
   @moduledoc """
-  Documentation for KafkaHelper.
+  Defines a behaviour with a single `publish/3` function that will be implemented
+  by `KafkaHelper.Kafka` and can be mocked during tests.
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> KafkaHelper.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
+  @callback publish(data :: any(), topic :: String.t(), key :: String.t() | nil) ::
+              :ok | {:error, any}
 end
