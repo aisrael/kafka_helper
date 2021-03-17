@@ -24,7 +24,7 @@ defmodule KafkaHelper.MixProject do
     [
       {:msgpax, "~> 2.0"},
       {:msgpax_helper, github: "aisrael/msgpax_helper", tag: "0.2"},
-      {:kafka_ex, github: "kafkaex/kafka_ex", runtime: false},
+      {:kafka_ex, "~> 0.11"},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
